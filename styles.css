@@ -1,0 +1,313 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ── ESTADO INICIAL (Centrado con background-1) ── */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('public/background-1.png') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.5s ease;
+    color: #ffffff;
+}
+
+.top-banner {
+    display: none; /* Oculto al inicio */
+    width: 100%;
+    height: 250px;
+}
+
+.top-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Contenedor Translúcido Inicial */
+.container {
+    width: 90%;
+    max-width: 800px;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    transition: all 0.5s ease;
+}
+
+/* ── ESTADO DE RESULTADOS ACTIVOS (Caja de 3 columnas) ── */
+body.modo-resultados {
+    background: #4c6585; 
+    justify-content: flex-start; 
+}
+
+body.modo-resultados .top-banner {
+    display: block; 
+}
+
+body.modo-resultados .container {
+    width: 92%;
+    max-width: 1350px; 
+    margin: -50px auto 40px auto; 
+    background: rgba(25, 55, 104, 0.75); 
+    padding: 30px 40px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+body.modo-resultados header p {
+    display: none; 
+}
+
+/* ── ELEMENTOS INTERNOS ── */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 2.2rem;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.search-section {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.search-section select {
+    flex: 1;
+    min-width: 250px;
+    max-width: 500px;
+    padding: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.search-section button {
+    padding: 14px 35px;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.1s;
+}
+
+.search-section button:hover {
+    background: #2563eb;
+    transform: scale(1.02);
+}
+
+/* ── [ARTE 1] GATO ANCHO INTEGRADO (PANTALLA DE INICIO) ── */
+.ascii-home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.ascii-home pre {
+    font-family: monospace;
+    font-size: 10.5px; 
+    line-height: 1.05;
+    color: rgba(255, 255, 255, 0.85); 
+    letter-spacing: 0.5px;
+    margin: 0;
+    text-align: center;
+}
+
+/* Ocultar el gato central cuando estamos viendo los resultados */
+body.modo-resultados .ascii-home {
+    display: none;
+}
+
+/* ── [ARTE 2] CONTENEDOR FLOTANTE FLUIDO (SÓLO EN RESULTADOS) ── */
+.ascii-sidebar {
+    display: none; /* Oculto en el inicio */
+}
+
+body.modo-resultados .ascii-sidebar {
+    display: block;
+    position: fixed;   
+    left: 25px; 
+    top: 50%;          
+    transform: translateY(-50%);
+    z-index: 5;
+    background: rgba(255, 255, 255, 0.06); 
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 14px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.ascii-sidebar pre {
+    font-family: monospace;
+    font-size: 7.5px;    
+    line-height: 1.05;    
+    color: #cbd5e1;       
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+/* ── GRID DE TARJETAS ── */
+.resultados {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.resultados.hidden {
+    display: none;
+}
+
+.beca-card {
+    display: flex;
+    gap: 20px;
+    background: rgba(255, 255, 255, 0.05); 
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 15px;
+    transition: transform 0.3s, background 0.3s;
+    align-items: stretch;
+}
+
+.beca-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.beca-img-container {
+    width: 130px;
+    height: 130px;
+    flex-shrink: 0; 
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.beca-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.beca-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.beca-info h3 {
+    color: #93c5fd;
+    margin-bottom: 6px;
+    font-size: 1.15rem;
+    line-height: 1.3;
+}
+
+.beca-info p {
+    margin: 3px 0;
+    color: #cbd5e1;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.beca-label {
+    font-weight: 600;
+    color: #f8fafc;
+}
+
+.fecha-vencimiento {
+    color: #fca5a5 !important;
+    font-weight: 600;
+    margin-top: auto !important;
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px; 
+}
+
+.icono-vence {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+}
+
+.beca-info a {
+    color: #60a5fa;
+    text-decoration: none;
+}
+
+.beca-info a:hover {
+    text-decoration: underline;
+}
+
+.loading, .sin-resultados {
+    text-align: center;
+    padding: 30px;
+    font-size: 1.1rem;
+    color: #94a3b8;
+}
+
+.loading.hidden {
+    display: none;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px 0;
+    opacity: 0.6;
+    font-size: 0.9rem;
+}
+
+/* ── RESPONSIVE ADAPTATIVO ── */
+@media (max-width: 1450px) {
+    body.modo-resultados .ascii-sidebar {
+        display: none; 
+    }
+}
+
+@media (max-width: 768px) {
+    .beca-card {
+        flex-direction: column; 
+    }
+    
+    .beca-img-container {
+        width: 100%;
+        height: 180px;
+    }
+
+    .search-section {
+        flex-direction: column;
+    }
+
+    .resultados {
+        grid-template-columns: 1fr;
+    }
+}
