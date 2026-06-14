@@ -1,6 +1,5 @@
 const API_BASE_URL = 'https://18ls35hs-5056.brs.devtunnels.ms/api';
 
-// Función para detectar cuando se presiona la tecla Enter en el select
 function handleKeyPress(event) {
     if (event.key === 'Enter') {
         buscarBecas();
@@ -10,27 +9,25 @@ function handleKeyPress(event) {
 async function buscarBecas() {
     const carrera = document.getElementById('carrera').value;
 
-    // Ya no bloqueamos si no hay carrera, porque por defecto cargará "TODAS"
+    // ya no bloqueamos si no hay carrera, porque por defecto cargará "todas"
     if (!carrera) {
         alert('Por favor selecciona una opción válida');
         return;
     }
 
-    // Activar el cambio de interfaz (Fondo sólido, banner y reajuste)
+    // recordar, modificar en la proxima actualizacion para que se cambie de fondo
     document.body.classList.add('modo-resultados');
     
-    // Ocultar resultados previos mientras carga
     document.getElementById('resultados').classList.add('hidden');
     mostrarCargando(true);
 
     try {
-        // Enrutamiento dinámico inteligente
         let url = "";
         if (carrera === "TODAS") {
-            // Llama a api/Becas (Listar todas)
+            
             url = `${API_BASE_URL}/becas`; 
         } else {
-            // Llama a api/becas/carrera/{carrera}
+            // aqui llamo, corregir con el endpoint de postman
             url = `${API_BASE_URL}/becas/carrera/${encodeURIComponent(carrera)}`;
         }
 
@@ -59,7 +56,7 @@ function mostrarCargando(visible) {
 function mostrarResultados(becas) {
     const container = document.getElementById('resultados');
     
-    // Mostramos el contenedor de resultados
+    // c muestra el contenedor de resultados, importante
     container.classList.remove('hidden');
 
     if (becas.length === 0) {
@@ -68,7 +65,6 @@ function mostrarResultados(becas) {
     }
 
     container.innerHTML = becas.map(beca => {
-        // Manejo de Mayúsculas o Minúsculas dependiendo de tu API C# (.id o .Id)
         const idBeca = beca.id || beca.Id || 1;
         const nombreBeca = beca.nombre || beca.Nombre;
         const carreraBeca = beca.carrera || beca.Carrera;
@@ -76,7 +72,6 @@ function mostrarResultados(becas) {
         const reqBeca = beca.requisitos || beca.Requisitos;
         const fechaBeca = beca.fechaLimite || beca.FechaLimite;
 
-        // Se agregó la estructura Flexbox para separar Imagen (Izquierda) e Info (Derecha)
         return `
         <div class="beca-card">
             <div class="beca-img-container">

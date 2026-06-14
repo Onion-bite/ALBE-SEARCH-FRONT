@@ -19,7 +19,7 @@ body {
 }
 
 .top-banner {
-    display: none; /* Oculto al inicio */
+    display: none; 
     width: 100%;
     height: 250px;
 }
@@ -30,7 +30,7 @@ body {
     object-fit: cover;
 }
 
-/* Contenedor Translúcido Inicial */
+/* contenedor translucido inicial */
 .container {
     width: 90%;
     max-width: 800px;
@@ -44,7 +44,7 @@ body {
     transition: all 0.5s ease;
 }
 
-/* ── ESTADO DE RESULTADOS ACTIVOS (Caja de 3 columnas) ── */
+/* aqui va lo de los gatos */
 body.modo-resultados {
     background: #4c6585; 
     justify-content: flex-start; 
@@ -119,7 +119,7 @@ header h1 {
     transform: scale(1.02);
 }
 
-/* ── [ARTE 1] GATO ANCHO INTEGRADO (PANTALLA DE INICIO) ── */
+/*  GATO ANCHO INTEGRADO (PANTALLA DE INICIO) */
 .ascii-home {
     display: flex;
     justify-content: center;
@@ -139,14 +139,14 @@ header h1 {
     text-align: center;
 }
 
-/* Ocultar el gato central cuando estamos viendo los resultados */
+/* ocultar el gato central cuando estamos viendo los resultados */
 body.modo-resultados .ascii-home {
     display: none;
 }
 
-/* ── [ARTE 2] CONTENEDOR FLOTANTE FLUIDO (SÓLO EN RESULTADOS) ── */
+/* GATO 2 CONTENEDOR FLOTANTE VOLANDO ── */
 .ascii-sidebar {
-    display: none; /* Oculto en el inicio */
+    display: none; 
 }
 
 body.modo-resultados .ascii-sidebar {
@@ -174,7 +174,7 @@ body.modo-resultados .ascii-sidebar {
     margin: 0;
 }
 
-/* ── GRID DE TARJETAS ── */
+/* AQUI empiezan las tarejtas */
 .resultados {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
@@ -286,7 +286,7 @@ footer {
     font-size: 0.9rem;
 }
 
-/* ── RESPONSIVE ADAPTATIVO ── */
+/* Corregir aqui para que sea responsive */
 @media (max-width: 1450px) {
     body.modo-resultados .ascii-sidebar {
         display: none; 
